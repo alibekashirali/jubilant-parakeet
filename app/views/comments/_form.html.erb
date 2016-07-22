@@ -1,0 +1,12 @@
+<%= simple_form_for @path, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :body %>
+  <%= error_span(@comment[:body]) %>
+  <%= f.input :user_id %>
+  <%= error_span(@comment[:user_id]) %>
+  <%= f.input :order_id %>
+  <%= error_span(@comment[:order_id]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                comment_path(@order), :class => 'btn btn-default' %>
+<% end %>

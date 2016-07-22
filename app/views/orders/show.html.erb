@@ -1,0 +1,122 @@
+<%- model_class = Order -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+  <%= image_tag @order.cargo_picture.url(:medium)%>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:what) %>:</strong></dt>
+  <dd><%= @order.what %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
+  <dd><%= @order.time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:volume) %>:</strong></dt>
+  <dd><%= @order.volume_with_details %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:weight) %>:</strong></dt>
+  <dd><%= @order.weight %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @order.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @order.price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:category_id) %>:</strong></dt>
+  <dd><%= @order.category_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @order.user_id %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              category_orders_path(@category), :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_order_path(@order), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              order_path(@order),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+<%= link_to 'сделать ставку', new_order_bid_path(@order), class: "btn btn-default"%>
+
+
+<%- model_class = Bid -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%= model_class.human_attribute_name(:order_id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bids.each do |bid| %>
+      <tr>
+        <td><%= link_to bid.id, bid_path(bid) %></td>
+        <td><%= bid.price %></td>
+        <td><%= bid.start_date %></td>
+        <td><%= bid.end_date %></td>
+        <td><%= bid.order_id %></td>
+        <td><%= link_to bid.user.email, bid.user %></td>
+        <td><%=l bid.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_bid_path(bid), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      bid_path(bid),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_order_bid_path(@order),
+            :class => 'btn btn-primary' %>
+            
+            
+
+                <div class="bs-calltoaction bs-calltoaction-default">
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">Its a Call To Action</h1>
+                            <div class="cta-desc">
+                                <p>Describe the action here.</p>
+                                <p>Describe the action here.</p>
+                                <p>Describe the action here.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cta-button">
+                            <a href="#" class="btn btn-lg btn-block btn-default">Go for It!</a>
+                        </div>
+                     </div>
+                </div>
+
+
+
+
+<%= form_for [@order, @comment] do |f| %>
+        <div class="field">
+          <%= f.label :body %><br>
+          <%= f.text_area :body %>
+        </div>
+        
+          <%= f.hidden_field :order_id, value: @order.id %>
+          
+        <div class="actions">
+          <%= f.submit 'Отправить', class: "btn btn-default" %>
+        </div>
+      <% end %>
+     
+    <% @order.comments.each do |comment| %>
+      <%= comment.user.email%>
+      <p>Коментарий: <%= comment.body %><br>
+      <%= comment.created_at %>
+      </p>
+      <br>
+    <% end %>

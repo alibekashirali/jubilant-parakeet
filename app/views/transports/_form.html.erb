@@ -1,0 +1,14 @@
+<%= simple_form_for @transport, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= error_span(@transport[:name]) %>
+  <%= f.input :body_type %>
+  <%= error_span(@transport[:body_type]) %>
+  <%= f.input :capacity %>
+  <%= error_span(@transport[:capacity]) %>
+  <%= f.input :picture %>
+  <%= error_span(@transport[:picture]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                transports_path, :class => 'btn btn-default' %>
+<% end %>
