@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
   
   has_many :transports
   has_many :comments
+  has_many :orders
+  has_many :specializations
+  has_many :categories, through: :specializations
+  has_many :relevant_orders, through: :categories, source: :orders
+  
+  def specialization_of(category)
+    specializations.where(category_id: category.id).first
+  end
 end

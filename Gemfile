@@ -12,6 +12,7 @@ gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'cancancan', '~> 1.15'
 gem 'breadcrumbs_on_rails', '~> 2.3', '>= 2.3.1'
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
+gem 'i18n'
 
 gem 'friendly_id', '~> 5.1'
 gem 'translit', '~> 0.1.5'

@@ -4,6 +4,8 @@ class UsersController < ApplicationController
       def show
         @user = User.find(params[:id])
         @transports = @user.transports
+        @orders = @user.orders
+        @categories = Category.all
       end
       
       def edit

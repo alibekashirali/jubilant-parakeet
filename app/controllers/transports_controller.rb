@@ -30,6 +30,7 @@ class TransportsController < ApplicationController
     @transport = current_user.transports.new(transport_params)
     respond_to do |format|
       if @transport.save
+        current_user.update(driver:true)
         format.html { redirect_to @transport, notice: 'Transport was successfully created.' }
         format.json { render :show, status: :created, location: @transport }
       else

@@ -1,4 +1,81 @@
-<h1><%= @user.email %></h1>
+<h3>Личные данные</h3>
+<h4><%= @user.email %></h4>
+
+<div>мой запросы</div>
+
+<%- model_class = Order -%>
+<link rel="stylesheet" type="text/css" href="orders.scss">
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:what) %></th>
+      <th><%= model_class.human_attribute_name(:time) %></th>
+      <th><%= model_class.human_attribute_name(:volume) %></th>
+      <th><%= model_class.human_attribute_name(:weight) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:category_id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.id, order_path(order) %></td>
+        <td><%= order.what %></td>
+        <td><%= order.time %></td>
+        <td><%= order.volume_with_details %></td>
+        <td><%= order.weight %></td>
+        <td><%= order.description %></td>
+        <td><%= order.price %></td>
+        <td><%= order.category_id %></td>
+        <td><%= order.user.email %></td>
+        <td><%=l order.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_order_path(order), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      order_path(order),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+
+
+<%- model_class = Category -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+           <% specialization = current_user.specialization_of(category)%>
+          <% if current_user.specializations.where(category_id: category.id).empty? %>
+            <%= link_to 'Выбрать', specializations_path(category_id: category.id), method: :post %>
+          <%else%>
+            <%= link_to 'Убрать' , specialization_path(specialization), method: :delete %>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
     
 <%- model_class = Transport -%>
 <div class="page-header">

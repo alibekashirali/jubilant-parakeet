@@ -1,24 +1,25 @@
 <%= simple_form_for @path, :html => { :class => 'form-horizontal' } do |f| %>
+
   <%= f.input :time %>
-  <%= error_span(@order[:time]) %>
   <%= f.input :what %>
-  <%= error_span(@order[:what]) %>
-  <%= f.input :width %>
-  <%= error_span(@order[:width]) %>
-  <%= f.input :height %>
-  <%= error_span(@order[:height]) %>
-  <%= f.input :length %>
-  <%= error_span(@order[:length]) %>
-  <%= f.input :volume %>
-  <%= error_span(@order[:volume]) %>
-  <%= f.input :weight %>
-  <%= error_span(@order[:weight]) %>
+  
+  <% if @category.slug == "pereezdy" %>
+  <% end %>
+  <%= f.input :width, input_html: {value: ''} %>
+  <%= f.input :height, input_html: {value: ''} %>
+  <%= f.input :length, input_html: {value: ''} %>
+  <%= f.input :weight, input_html: {value: ''} %>
   <%= f.input :description %>
-  <%= error_span(@order[:description]) %>
-  <%= f.input :price %>
-  <%= error_span(@order[:price]) %>
+  <%= f.input :price, collection: ['10-1000', '1000-5000'] %>
   <%= f.input :cargo_picture %>
-  <%= error_span(@order[:price]) %>
+  <%= f.input :loading %>
+  <%= f.input :unloading %>
+  <%= f.input :passenger %>
+  <%= f.input :for %>
+  <%= f.input :rush_order %>
+  <%= f.input :packaging %>
+  <%= f.input :loader %>
+  <%= f.input :round_trip %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

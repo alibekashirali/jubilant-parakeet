@@ -2,17 +2,22 @@
   <% if user_signed_in? %>
   <div class="container">
     <br>
-  <%= link_to "Транспорт", transports_path, class: 'btn btn-default' %>
+    <% if current_user.driver? %>
+      <%= link_to "Транспорт", transports_path, class: 'btn btn-default' %>
+      <%= render "orders/orders" %>
+    <% else  %>
   <%= link_to "Категорий", categories_path, class: 'btn btn-primary' %>
+  <% end %>
   </div>
   <% else %>
   <div class="bg-overlay">
-    <div class="row text-center">
+    <div class="text-center">
   		<h1>Грузоперевозки по всему Казахстану<br> экономьте до 70% на грузоперевозках</h1>
       <br><br>
-      <%= link_to "Разместить запрос", categories_path, class: 'btn btn-primary btn-lg' %>
+      <%= link_to "Разместить запрос", add_order_path, class: 'btn btn-primary btn-lg' %>
     </div>
   </div>
+  
 <% end %>
 <% end %>
 

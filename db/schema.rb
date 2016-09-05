@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720144152) do
+ActiveRecord::Schema.define(version: 20160830215558) do
 
   create_table "bets", force: :cascade do |t|
     t.integer  "bet"
@@ -63,16 +63,16 @@ ActiveRecord::Schema.define(version: 20160720144152) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "what"
-    t.integer  "width"
-    t.integer  "height"
-    t.integer  "length"
+    t.integer  "width",                      default: 0
+    t.integer  "height",                     default: 0
+    t.integer  "length",                     default: 0
     t.integer  "weight"
     t.string   "description"
     t.integer  "price"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.datetime "time"
     t.integer  "volume"
     t.string   "cargo_picture_file_name"
@@ -80,9 +80,32 @@ ActiveRecord::Schema.define(version: 20160720144152) do
     t.integer  "cargo_picture_file_size"
     t.datetime "cargo_picture_updated_at"
     t.string   "slug"
+    t.string   "loading"
+    t.string   "unloading"
+    t.string   "passenger"
+    t.string   "for"
+    t.boolean  "rush_order"
+    t.boolean  "packaging"
+    t.boolean  "loader"
+    t.boolean  "round_trip"
   end
 
   add_index "orders", ["slug"], name: "index_orders_on_slug", unique: true
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.integer  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "specializations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "transports", force: :cascade do |t|
     t.string   "name"
@@ -115,6 +138,7 @@ ActiveRecord::Schema.define(version: 20160720144152) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "driver",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

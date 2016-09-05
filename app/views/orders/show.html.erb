@@ -8,8 +8,12 @@
   <dd><%= @order.what %></dd>
   <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
   <dd><%= @order.time %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:volume) %>:</strong></dt>
-  <dd><%= @order.volume_with_details %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:width) %>:</strong></dt>
+  <dd><%= @order.width %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:height) %>:</strong></dt>
+  <dd><%= @order.height %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:length) %>:</strong></dt>
+  <dd><%= @order.length %></dd>
   <dt><strong><%= model_class.human_attribute_name(:weight) %>:</strong></dt>
   <dd><%= @order.weight %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
@@ -20,6 +24,20 @@
   <dd><%= @order.category_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
   <dd><%= @order.user_id %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:loading) %>:</strong></dt>
+  <dd><%= @order.loading %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:unloading) %>:</strong></dt>
+  <dd><%= @order.unloading %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:passenger) %>:</strong></dt>
+  <dd><%= @order.passenger %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rush_order) %>:</strong></dt>
+  <dd><%= @order.rush_order %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:packaging) %>:</strong></dt>
+  <dd><%= @order.packaging %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:loader) %>:</strong></dt>
+  <dd><%= @order.loader %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:round_trip) %>:</strong></dt>
+  <dd><%= @order.round_trip %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
