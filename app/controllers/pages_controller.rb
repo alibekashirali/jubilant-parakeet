@@ -14,4 +14,7 @@ class PagesController < ApplicationController
     def help
     end
     
+    def add_order
+        @categories = Category.all
+    end
 end

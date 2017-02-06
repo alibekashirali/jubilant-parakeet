@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_category
   before_action :set_breadcrumbs
+  before_action :authenticate_user!
   authorize_resource
   
   # GET /orders
