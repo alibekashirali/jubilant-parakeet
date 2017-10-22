@@ -31,23 +31,5 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_category_path,
-            :class => 'btn btn-primary' %>
-            
-<br>
-<br>
-<br>
- <% @categories.each do |category| %>
-		    <div class="col-sm-3 grid" #{= link_to category_orders_path(category}>
-            <div class="thumbnail">
-                    <%= image_tag "category/#{category.id}.png" %>
-                    <div class="wrapper">
-                        <div class="caption post-content">
-                            <h4><%= link_to category.name, category_orders_path(category) %></h4>
-                        </div>
-                  </div>
-            </div>
-        </div>
-  <% end %>
+
 

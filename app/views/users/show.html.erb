@@ -13,9 +13,6 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:what) %></th>
-      <th><%= model_class.human_attribute_name(:time) %></th>
-      <th><%= model_class.human_attribute_name(:volume) %></th>
-      <th><%= model_class.human_attribute_name(:weight) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
       <th><%= model_class.human_attribute_name(:category_id) %></th>
@@ -29,9 +26,6 @@
       <tr>
         <td><%= link_to order.id, order_path(order) %></td>
         <td><%= order.what %></td>
-        <td><%= order.time %></td>
-        <td><%= order.volume_with_details %></td>
-        <td><%= order.weight %></td>
         <td><%= order.description %></td>
         <td><%= order.price %></td>
         <td><%= order.category_id %></td>
@@ -76,45 +70,6 @@
   </tbody>
 </table>
 
-    
-<%- model_class = Transport -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:body_type) %></th>
-      <th><%= model_class.human_attribute_name(:capacity) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-
-
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transports.each do |transport| %>
-      <tr>
-        <td><%= link_to transport.id, transport_path(transport) %></td>
-        <td><%= transport.name %></td>
-        <td><%= transport.body_type %></td>
-        <td><%= transport.capacity %></td>
-        <td><%= transport.user.email %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_transport_path(transport), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      transport_path(transport),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_transport_path,

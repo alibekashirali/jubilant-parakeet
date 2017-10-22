@@ -1,25 +1,11 @@
 <%= simple_form_for @path, :html => { :class => 'form-horizontal' } do |f| %>
 
-  <%= f.input :time %>
   <%= f.input :what %>
   
   <% if @category.slug == "pereezdy" %>
   <% end %>
-  <%= f.input :width, input_html: {value: ''} %>
-  <%= f.input :height, input_html: {value: ''} %>
-  <%= f.input :length, input_html: {value: ''} %>
-  <%= f.input :weight, input_html: {value: ''} %>
   <%= f.input :description %>
-  <%= f.input :price, collection: ['10-1000', '1000-5000'] %>
-  <%= f.input :cargo_picture %>
-  <%= f.input :loading %>
-  <%= f.input :unloading %>
-  <%= f.input :passenger %>
-  <%= f.input :for %>
-  <%= f.input :rush_order %>
-  <%= f.input :packaging %>
-  <%= f.input :loader %>
-  <%= f.input :round_trip %>
+  <%= f.input :price %>
 
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

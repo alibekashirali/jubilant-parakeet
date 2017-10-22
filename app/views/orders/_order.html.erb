@@ -1,10 +1,6 @@
 <tr>
     <td><%= link_to order.id, order_path(order) %></td>
     <td><%= order.what %></td>
-    <td><%= l order.time, format: :short %></td>
-    <td><%= order.volume_with_details %></td>
-    <td><%= order.weight %></td>
-    <td><%= order.description %></td>
     <td><%= order.price %></td>
     <td><%= order.category_id %></td>
     <td><%= order.user_id %></td>
